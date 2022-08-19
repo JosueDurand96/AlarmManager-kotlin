@@ -15,7 +15,7 @@ class AlarmReceiver: BroadcastReceiver() {
         intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         val pendingIntent = PendingIntent.getActivity(context,0,i,0)
 
-        val builder = NotificationCompat.Builder(context!!,"foxandroid")
+        val builder = NotificationCompat.Builder(context!!,"josue")
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setContentTitle("SI SE PUDO")
             .setContentText("Descrition RETO")
