@@ -38,15 +38,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.cancelAlarmBtn.setOnClickListener {
-
+            cancelAlarm()
         }
 
+    }
+
+    private fun cancelAlarm() {
+        alarManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, AlarmReceiver::class.java)
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent,0)
+        alarManager.cancel(pendingIntent)
+        Toast.makeText(this,"Alarm cancelled", Toast.LENGTH_SHORT).show()
     }
 
     private fun setAlarm() {
         alarManager = getSystemService(ALARM_SERVICE) as AlarmManager
         val intent = Intent(this, AlarmReceiver::class.java)
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent,0)
+
         alarManager.setRepeating(
             AlarmManager.RTC_WAKEUP,calendar.timeInMillis,
             AlarmManager.INTERVAL_DAY,pendingIntent
